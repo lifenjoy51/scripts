@@ -1,0 +1,83 @@
+﻿<html>
+<head>
+</head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script>
+//document.domain = "dbpedia.org";
+var currentStation;
+
+//전체
+//var stationList = ['Achasan_Station','Aeogae_Station','Ahyeon_Station','Airport_Market_Station','Amsa_Station','Anam_Station','Anguk_Station','Ansan_Station','Anyang_Station','Apgujeong_Station','Apgujeongrodeo_Station','Arts_Center_Station','Asan_Station','Asin_Station','Baebang_Station','Baegun_Station','Baegyang-ri_Station','Baekseok_Station','Baengma_Station','Bakchon_Station','Balsan_Station','Bangbae_Station','Banghak_Station','Banghwa_Station','Bangi_Station','Banpo_Station','Banwol_Station','Beomgye_Station','Beotigogae_Station','BIT_Zone_Station','Bojeong_Station','Bokjeong_Station','Bomun_Station','Bongcheon_Station','Bonghwasan_Station','Bongmyeong_Station','Boramae_Station','Bosan_Station','Bucheon_City_Hall_Station','Bucheon_Stadium_Station','Bucheon_Station','Bugae_Station','Bulgwang_Station','Bupyeong_Market_Station','Bupyeong_Station','Bupyeong-gu_Office_Station','Bupyeongsamgeori_Station','Byeollae_Station','Byeongjeom_Station','Campus_Town_Station','Central_Park_Station','Chang-dong_Station','Changsin_Station','Cheolsan_Station','Cheonan_Station','Cheongdam_Station','Cheonggu_Station','Cheongmyeong_Station','Cheongnyangni_Station','Cheongpyeong_Station','Cheonho_Station','Cheonwang_Station','Chuncheon_Station','Chungjeongno_Station','Chungmuro_Station','Chunui_Station','City_Hall_Station','Daebang_Station','Daecheong_Station','Daechi_Station','Daegok_Station','Daeheung_Station','Daehwa_Station','Daemosan_Station','Daerim_Station','Daeseong-ri_Station','Daeyami_Station','Dandaeogeori_Station','Danggogae_Station','Dangjeong_Station','Dangsan_Station','Dapsimni_Station','Deokgye_Station','Deokjeong_Station','Deokso_Station','Deungchon_Station','Digital_Media_City_Station','Dobong_Station','Dobongsan_Station','Dogok_Station','Dohwa_Station','Dokbawi_Station','Doksan_Station','Dolgoji_Station','Dongam_Station','Dongchun_Station','Dongdaemun_History_&amp;_Culture_Park_Station','Dongdaemun_Station','Dongducheon_Station','Dongducheonjungang_Station','Dongguk_University_Station','Dongincheon_Station','Dongjak_Station','Dongmak_Station','Dongmyo_Station','Dongnimmun_Station','Dongsu_Station','Donong_Station','Dorimcheon_Station','Dosim_Station','Dowon_Station','Dujeong_Station','Dunchon-dong_Station','Euljiro_1-ga_Station','Euljiro_3-ga_Station','Euljiro_4-ga_Station','Eungam_Station','Eungbong_Station','Express_Bus_Terminal_Station','Gachon_University_Station','Gaebong_Station','Gaehwa_Station','Gaehwasan_Station','Gaepo-dong_Station','Gaerong_Station','Gajwa_Station','Galmae_Station','Galsan_Station','Ganeung_Station','Gangbyeon_Station','Gangchon_Station','Gangdong_Station','Gangdong-gu_Office_Station','Gangnam_Station','Gangnam-gu_Office_Station','Ganseogogeori_Station','Ganseok_Station','Gapyeong_Station','Garak_Market_Station','Gasan_Digital_Complex_Station','Gayang_Station','Geomam_Station','Geoyeo_Station','Geumcheon-gu_Office_Station','Geumchon_Station','Geumgok_Station','Geumho_Station','Geumjeong_Station','Geumneung_Station','Giheung_Station','Gil-dong_Station','Gimpo_International_Airport_Station','Gimyujeong_Station','Gireum_Station','Godeok_Station','Gojan_Station','Goksan_Station','Gongdeok_Station','Gongneung_Station','Government_Complex_Gwacheon_Station','Gubanpo_Station','Gubeundari_Station','Guil_Station','Guksu_Station','Gulbongsan_Station','Gunja_Station','Gunpo_Station','Gupabal_Station','Guri_Station','Guro_Digital_Complex_Station','Guro_Station','Guryong_Station','Gusan_Station','Guui_Station','Gwacheon_Station','Gwanak_Station','Gwangheungchang_Station','Gwanghwamun_Station','Gwangmyeong_Station','Gwangmyeongsageori_Station','Gwangnaru_Station','Gyeongbokgung_Station','Gyeongin_National_University_of_Education_Station','Gyesan_Station','Gyeyang_Station','Gyulhyeon_Station','Haengdang_Station','Haengsin_Station','Hagye_Station','Hak-dong_Station','Hangangjin_Station','Hangnyeoul_Station','Hankuk_University_of_Foreign_Studies_Station','Hannam_Station','Hansung_University_Station','Hanti_Station','Hanyang_University_at_Ansan_Station','Hanyang_University_Station','Hapjeong_Station','Heukseok_Station','Hoegi_Station','Hoehyeon_Station','Hoeryong_Station','Hogupo_Station','Hongik_University_Station','Hongje_Station','Hwagok_Station','Hwajeon_Station','Hwajeong_Station','Hwarangdae_Station','Hwaseo_Station','Hyehwa_Station','Hyochang_Park_Station','Ichon_Station','Ilsan_Station','Imae_Station','Imhak_Station','Incheon_Bus_Terminal_Station','Incheon_City_Hall_Station','Incheon_International_Airport_Cargo_Terminal_Station','Incheon_International_Airport_Station','Incheon_Nonhyeon_Station','Incheon_Station','Indeogwon_Station','International_Business_District_Station','Irwon_Station','Isu_Station','Itaewon_Station','Jakjeon_Station','Jamsil_Station','Jamsillaru_Station','Jamwon_Station','Jangam_Station','Janghanpyeong_Station','Jangji_Station','Jangseungbaegi_Station','Jegi-dong_Station','Jemulpo_Station','Jeongbalsan_Station','Jeongja_Station','Jeongwang_Station','Jeungmi_Station','Jeungsan_Station','Jichuk_Station','Jihaeng_Station','Jije_Station','Jiksan_Station','Jinwi_Station','Jonggak_Station','Jongno_3-ga_Station','Jongno_5-ga_Station','Juan_Station','Jukjeon_Station','Jungang_Station','Jung-dong_Station','Junggok_Station','Junggye_Station','Junghwa_Station','Jungnang_Station','Juyeop_Station','Kkachisan_Station','Kkachiul_Station','Konkuk_University_Station','Korea_Univ._Station','Macheon_Station','Madeul_Station','Madu_Station','Maebong_Station','Magok_Station','Magongnaru_Station','Majang_Station','Mangu_Station','Mangwolsa_Station','Mangwon_Station','Mapo_Station','Mapo-gu_Office_Station','Maseok_Station','Meokgol_Station','Mia_Station','Miasamgeori_Station','Migeum_Station','Mok-dong_Station','Mongchontoseong_Station','Moran_Station','Muakjae_Station','Mullae_Station','Munhak_Sports_Complex_Station','Munjeong_Station','Munsan_Station','Myeong-dong_Station','Myeonghak_Station','Myeongil_Station','Myeonmok_Station','Naebang_Station','Nakseongdae_Station','Nambu_Bus_Terminal_Station','Namchuncheon_Station','Namguro_Station','Namhansanseong_Station','Namseong_Station','Namtaeryeong_Station','Namyeong_Station','National_Assembly_Station','National_Police_Hospital_Station','Neunggok_Station','Nodeul_Station','Nogyang_Station','Nokbeon_Station','Nokcheon_Station','Noksapyeong_Station','Nonhyeon_Station','Noryangjin_Station','Nowon_Station','Obin_Station','Ogeum_Station','Oido_Station','Oksu_Station','Olympic_Park_Station','Omokgyo_Station','Onsu_Station','Onyangoncheon_Station','Ori_Station','Oryu-dong_Station','Osan_College_Station','Osan_Station','Paju_Station','Paldang_Station','Pangyo_Station','Pungsan_Station','Pyeongchon_Station','Pyeongnae-Hopyeong_Station','Pyeongtaek_Station','Sadang_Station','Saejeol_Station','Saetgang_Station','Sagajeong_Station','Samgakji_Station','Samseong_Station','Samsong_Station','Sanbon_Station','Sangbong_Station','Sangcheon_Station','Sangdo_Station','Sang-dong_Station','Sanggal_Station','Sanggye_Station','Sangil-dong_Station','Sangnoksu_Station','Sangsu_Station','Sangwangsimni_Station','Sangwolgok_Station','Sanseong_Station','Sapyeong_Station','Sareung_Station','Sema_Station','Seobinggo_Station','Seocho_Station','Seodaemun_Station','Seodongtan_Station','Seogang_Station','Seohyeon_Station','Seojeong-ri_Station','Seokchon_Station','Seokgye_Station','Seoksu_Station','Seolleung_Station','Seonbawi_Station','Seongbuk_Station','Seonghwan_Station','Seongsu_Station','Seonhak_Station','Seonyudo_Station','Seoul_Grand_Park_Station','Seoul_Nat&apos;l_Univ._of_Education_Station','Seoul_National_University_Station','Seoul_Racecourse_Park_Station','Seoul_Station','Seryu_Station','Sillim_Station','Sinbanghwa_Station','Sinbanpo_Station','Sinchang_Station','Sincheon_Station','Sinchon_Station','Sindaebang_Station','Sindaebangsamgeori_Station','Sindang_Station','Sindap_Station','Sindorim_Station','Singal_Station','Singeumho_Station','Singil_Oncheon_Station','Singil_Station','Sinheung_Station','Sinimun_Station','Sinjeong_Station','Sinjeongnegeori_Station','Sinjung-dong_Station','Sinmok-dong_Station','Sinnonhyeon_Station','Sinpung_Station','Sinsa_Station','Sinseol-dong_Station','Sinwon_Station','Sinyeonsu_Station','Sinyongsan_Station','Songdo_Station','Songjeong_Station','Songnae_Station','Songpa_Station','Songtan_Station','Sookmyung_Women&apos;s_Univ._Station','Soongsil_University_Station','Sosa_Station','Soyosan_Station','Sports_Complex_Station','Ssangmun_Station','Sujin_Station','Sunae_Station','Sungkyunkwan_University_Station','Suraksan_Station','Surisan_Station','Susaek_Station','Suseo_Station','Suwon_Station','Suyu_Station','Taepyeong_Station','Taereung_Station','Tanhyeon_Station','Technopark_Station','Toegyewon_Station','Ttukseom_Resort_Station','Ttukseom_Station','Uijeongbu_Station','Uiwang_Station','Ujangsan_Station','Ungilsan_Station','University_of_Incheon_Station','Unjeong_Station','Unseo_Station','Wangsimni_Station','Wolgok_Station','Wolgye_Station','Wollong_Station','Wondang_Station','Wondeok_Station','Woninjae_Station','World_Cup_Stadium_Station','Yaksu_Station','Yangcheon_Hyanggyo_Station','Yangcheon-gu_Office_Station','Yangjae_Station','Yangjeong_Station','Yangju_Station','Yangpyeong_Station','Yangsu_Station','Yangwon_Station','Yatap_Station','Yeokchon_Station','Yeokgok_Station','Yeoksam_Station','Yeomchang_Station','Yeongdeungpo_Market_Station','Yeongdeungpo_Station','Yeongdeungpo-gu_Office_Station','Yeongtong_Station','Yeonsinnae_Station','Yeouido_Station','Yeouinaru_Station','Yongdap_Station','Yongdu_Station','Yongmasan_Station','Yongmun_Station','Yongsan_Station'];
+//좌표없는거
+var stationList = ['Gongdeok_Station','Galmae_Station','Euljiro_4-ga_Station','Gangdong_Station','Gaerong_Station','Geoyeo_Station','Godeok_Station','Gongdeok_Station','Gwangnaru_Station','Gwanghwamun_Station','Gubeundari_Station','Gil-dong_Station','Dapsimni_Station','Dunchon-dong_Station','Magok_Station','Majang_Station','Macheon_Station','Mapo_Station','Myeongil_Station','Mok-dong_Station','Bangi_Station','Sangil-dong_Station','Seodaemun_Station','Singeumho_Station','Sinjeong_Station','Aeogae_Station','Yangpyeong_Station','Yeouinaru_Station','Yeongdeungpo_Market_Station','Omokgyo_Station','Euljiro_4-ga_Station','Janghanpyeong_Station','Cheonggu_Station','Haengdang_Station','Gongdeok_Station','Gwangheungchang_Station','Gusan_Station','Noksapyeong_Station','Daeheung_Station','Dokbawi_Station','Dolgoji_Station','Mapo-gu_Office_Station','Mangwon_Station','Beotigogae_Station','Bomun_Station','Bonghwasan_Station','Sangsu_Station','Sangwolgok_Station','Saejeol_Station','Anam_Station','Yeokchon_Station','Wolgok_Station','World_Cup_Stadium_Station','Eungam_Station','Changsin_Station','Cheonggu_Station','Taereung_Station','Hangangjin_Station','Hyochang_Park_Station','Gongneung_Station','Taereung_Station','Munjeong_Station','Songpa_Station','Jangji_Station','Pangyo_Station'];
+
+$(document).ready(function(){
+$.each(stationList, function(i,obj){
+	getStationInfo(obj);
+});
+});
+
+function getStationInfo(stationName){
+	currentStation = stationName;
+	var data ={};
+    data.output = 'json';
+    data.callback = "jsonp_callback";
+	
+	$.ajax({
+		type:'get'
+		,url:'http://dbpedia.org/data/'+stationName+'.json'
+		,dataType:'jsonp'
+		,data:data
+		,crossDomain:true
+		,jsonp:'test'
+		,async:false
+	});
+}
+
+function jsonp_callback(data){
+	var station;
+	$.each(stationList,function(i,obj){
+		if(typeof  (data['http://dbpedia.org/resource/'+obj]) != 'undefined'){
+			station = obj;
+			return false;
+		}		
+	});
+	console.log(data);
+	console.log(station);
+	$.each(data['http://dbpedia.org/resource/'+station]['http://dbpedia.org/property/line'],function(i,obj){
+		var latitude;
+		if(data['http://dbpedia.org/resource/'+station]['http://www.w3.org/2003/01/geo/wgs84_pos#lat']){
+			latitude = data['http://dbpedia.org/resource/'+station]['http://www.w3.org/2003/01/geo/wgs84_pos#lat'][0].value;
+		}
+		var longitude;
+		if(data['http://dbpedia.org/resource/'+station]['http://www.w3.org/2003/01/geo/wgs84_pos#long']){
+			longitude= data['http://dbpedia.org/resource/'+station]['http://www.w3.org/2003/01/geo/wgs84_pos#long'][0].value;
+		}
+		var stationName = data['http://dbpedia.org/resource/'+station]['http://dbpedia.org/property/hangul'][0].value;
+		var lineNumber = obj.value;
+		
+		$('#listArea').append($('<tr/>').append($('<td/>').append(lineNumber))
+		.append($('<td/>').append(stationName))
+		.append($('<td/>').append(latitude))
+		.append($('<td/>').append(longitude))
+		.append($('<td/>').append(station)));
+	});
+	return;
+}
+</script>
+<body>
+<table id="tb" border="1">
+	<thead>
+		<tr>
+			<th>노선</th>
+			<th>역이름</th>
+			<th>lati</th>
+			<th>longi</th>
+			<th>영어이름</th>
+		</tr>
+	</thead>
+	<tbody id="listArea">
+	</tbody>
+</table>
+</body>
+</html>
